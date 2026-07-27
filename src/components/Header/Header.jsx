@@ -1,17 +1,26 @@
 import "./Header.css";
+import { getCurrentMonth, getToday } from "../../utils/dateUtils";
 
 function Header() {
   return (
     <header className="header">
-      <div>
-        <p className="subtitle">TRACKER FINANCIERO</p>
 
-        <h1>Julio 2026</h1>
+      <div>
+
+        <p className="subtitle">
+          TRACKER FINANCIERO
+        </p>
+
+        <h1>
+          {getCurrentMonth()}
+        </h1>
 
         <p className="today">
-          Hoy: Viernes 24 de julio de 2026
+          Hoy: {getToday()}
         </p>
+
       </div>
+
     </header>
   );
 }
