@@ -1,5 +1,6 @@
 import Header from "./components/Header/Header";
 import Layout from "./components/Layout/Layout";
+import MonthSelector from "./components/MonthSelector/MonthSelector";
 import SummaryCards from "./components/SummaryCards/SummaryCards";
 import ExpenseTable from "./components/ExpenseTable/ExpenseTable";
 
@@ -17,6 +18,8 @@ function App() {
     <Layout>
 
       <Header />
+
+      <MonthSelector />
 
       <SummaryCards
         expenses={expenses}

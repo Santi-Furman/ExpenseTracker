@@ -1,0 +1,43 @@
+.month-selector {
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 20px;
+
+  margin-bottom: 25px;
+
+}
+
+.month-selector button {
+
+  width: 36px;
+
+  height: 36px;
+
+  border: none;
+
+  border-radius: 10px;
+
+  background: white;
+
+  box-shadow: 0 2px 6px rgba(0,0,0,.08);
+
+  cursor: pointer;
+
+  font-size: 18px;
+
+}
+
+.month-selector h2 {
+
+  min-width: 180px;
+
+  text-align: center;
+
+  text-transform: capitalize;
+
+}
