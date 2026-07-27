@@ -6,6 +6,7 @@ import ExpenseTable from "./components/ExpenseTable/ExpenseTable";
 
 import defaultExpenses from "./data/defaultExpenses";
 import useLocalStorage from "./hooks/useLocalStorage";
+import expenseTemplates from "./data/expenseTemplates";
 
 import { useState } from "react";
 import { getMonthKey } from "./utils/monthUtils";
@@ -29,7 +30,34 @@ function App() {
   const monthKey = getMonthKey(month);
 
 
-  const expenses = expensesByMonth[monthKey] || [];
+  const expenses =
+  expensesByMonth[monthKey] || createMonthExpenses();
+
+  function createMonthExpenses() {
+
+  import { useState, useEffect } from "react";
+
+  return expenseTemplates.map((template) => ({
+    id: Date.now() + template.id,
+
+    name: template.name,
+
+    amount: template.pinnedAmount
+      ? template.amount
+      : 0,
+
+    date: `${monthKey}-${String(template.day).padStart(2, "0")}`,
+
+    paid: false,
+
+    color: template.color,
+
+    pinnedAmount: template.pinnedAmount,
+
+    pinnedDate: template.pinnedDate,
+  }));
+
+}
 
 
   function changeMonth(amount) {
@@ -66,6 +94,18 @@ function App() {
 
 }
 
+useEffect(() => {
+
+  if (!expensesByMonth[monthKey]) {
+
+    setExpensesByMonth((prev) => ({
+      ...prev,
+      [monthKey]: createMonthExpenses()
+    }));
+
+  }
+
+}, [monthKey]);
 
   return (
     <Layout>
