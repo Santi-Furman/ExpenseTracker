@@ -1,11 +1,9 @@
 import { useState } from "react";
 import "./ExpenseTable.css";
-import defaultExpenses from "../../data/defaultExpenses";
 import ExpenseRow from "../ExpenseRow/ExpenseRow";
 
-function ExpenseTable() {
+function ExpenseTable({ expenses, setExpenses }) {
 
-  const [expenses, setExpenses] = useState(defaultExpenses);
   const [sortBy, setSortBy] = useState(null);
 
   function togglePin(id, field) {
@@ -14,20 +12,7 @@ function ExpenseTable() {
         expense.id === id
           ? {
               ...expense,
-              [field]: !expense[field]
-            }
-          : expense
-      )
-    );
-  }
-
-  function togglePaid(id) {
-    setExpenses((prev) =>
-      prev.map((expense) =>
-        expense.id === id
-          ? {
-              ...expense,
-              paid: !expense.paid
+              [field]: !expense[field],
             }
           : expense
       )
@@ -40,7 +25,7 @@ function ExpenseTable() {
         expense.id === id
           ? {
               ...expense,
-              [field]: value
+              [field]: field === "amount" ? Number(value) : value,
             }
           : expense
       )
@@ -48,7 +33,6 @@ function ExpenseTable() {
   }
 
   function sortExpenses(list) {
-
     if (sortBy === "amount") {
       return [...list].sort((a, b) => b.amount - a.amount);
     }
@@ -60,6 +44,21 @@ function ExpenseTable() {
     return list;
   }
 
+  function addExpense() {
+    const newExpense = {
+      id: Date.now(),
+      name: "",
+      amount: 0,
+      date: new Date().toISOString().split("T")[0],
+      paid: false,
+      color: "#6C63FF",
+      pinnedAmount: false,
+      pinnedDate: false,
+    };
+
+    setExpenses((prev) => [...prev, newExpense]);
+  }
+
   const pendingExpenses = sortExpenses(
     expenses.filter((expense) => !expense.paid)
   );
@@ -68,23 +67,6 @@ function ExpenseTable() {
     expenses.filter((expense) => expense.paid)
   );
 
-
-  function addExpense() {
-
-  const newExpense = {
-    id: Date.now(),
-    name: "",
-    amount: 0,
-    date: new Date().toISOString().split("T")[0],
-    paid: false,
-    color: "#6C63FF",
-    pinnedAmount: false,
-    pinnedDate: false,
-  };
-
-  setExpenses((prev) => [...prev, newExpense]);
-
-  }
   return (
     <section className="expense-table">
 
@@ -116,7 +98,6 @@ function ExpenseTable() {
           key={expense.id}
           expense={expense}
           onTogglePin={togglePin}
-          onTogglePaid={togglePaid}
           onUpdate={updateExpense}
         />
       ))}
@@ -130,11 +111,9 @@ function ExpenseTable() {
           key={expense.id}
           expense={expense}
           onTogglePin={togglePin}
-          onTogglePaid={togglePaid}
           onUpdate={updateExpense}
         />
       ))}
-
 
       <button
         className="add-expense"
@@ -142,11 +121,9 @@ function ExpenseTable() {
       >
         + Agregar gasto
       </button>
-    </section>
 
-    
+    </section>
   );
 }
-
 
 export default ExpenseTable;
