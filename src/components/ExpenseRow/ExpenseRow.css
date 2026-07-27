@@ -1,0 +1,101 @@
+.expense-row {
+
+  display: grid;
+
+  grid-template-columns:
+    30px
+    1fr
+    140px
+    170px;
+
+  align-items: center;
+
+  padding: 12px 0;
+
+  border-bottom: 1px solid #eee;
+
+  font-size: 14px;
+
+}
+
+
+.expense-row input[type="checkbox"] {
+
+  justify-self: center;
+
+}
+
+
+.expense-name {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+}
+
+
+.color-dot {
+
+  width: 10px;
+  height: 10px;
+
+  border-radius: 50%;
+
+}
+
+
+.expense-amount,
+.expense-date {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+}
+
+
+.pin {
+
+  cursor: pointer;
+  transition: .2s;
+
+}
+
+
+.expense-name input {
+
+  border: none;
+  background: transparent;
+  width: 100%;
+  outline: none;
+
+}
+
+
+.expense-amount input {
+
+  width: 80px;
+
+  border: none;
+  background: transparent;
+
+  outline: none;
+
+  text-align: right;
+
+}
+
+
+.expense-date input {
+
+  border: none;
+  background: transparent;
+
+  outline: none;
+
+}

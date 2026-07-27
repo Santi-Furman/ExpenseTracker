@@ -1,0 +1,25 @@
+.header {
+  background: white;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.06);
+  margin-bottom: 25px;
+}
+
+.subtitle {
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: #888;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.header h1 {
+  font-size: 34px;
+  margin-bottom: 8px;
+}
+
+.today {
+  color: #777;
+  font-size: 15px;
+}
