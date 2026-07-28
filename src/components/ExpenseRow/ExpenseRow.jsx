@@ -1,19 +1,10 @@
 import "./ExpenseRow.css";
 
-function ExpenseRow({
-  expense,
-  onTogglePin,
-  onUpdate,
-  onTogglePaid,
-}) {
+function ExpenseRow({ expense, onTogglePin, onUpdate }) {
+
   return (
     <div className="expense-row">
 
-      <input
-        type="checkbox"
-        checked={expense.paid}
-        onChange={() => onTogglePaid(expense.id)}
-      />
 
       <div className="expense-name">
 
@@ -23,7 +14,6 @@ function ExpenseRow({
         />
 
         <input
-          type="text"
           value={expense.name}
           onChange={(e) =>
             onUpdate(
@@ -37,6 +27,7 @@ function ExpenseRow({
       </div>
 
 
+
       <div className="expense-amount">
 
         <input
@@ -46,15 +37,19 @@ function ExpenseRow({
             onUpdate(
               expense.id,
               "amount",
-              Number(e.target.value)
+              e.target.value
             )
           }
         />
 
+
         <span
           className="pin"
           onClick={() =>
-            onTogglePin(expense.id, "pinnedAmount")
+            onTogglePin(
+              expense.id,
+              "pinnedAmount"
+            )
           }
           style={{
             color: expense.pinnedAmount
@@ -62,10 +57,12 @@ function ExpenseRow({
               : "#bbb"
           }}
         >
-          📍
+          📌
         </span>
 
       </div>
+
+
 
 
       <div className="expense-date">
@@ -82,10 +79,14 @@ function ExpenseRow({
           }
         />
 
+
         <span
           className="pin"
           onClick={() =>
-            onTogglePin(expense.id, "pinnedDate")
+            onTogglePin(
+              expense.id,
+              "pinnedDate"
+            )
           }
           style={{
             color: expense.pinnedDate
@@ -93,13 +94,15 @@ function ExpenseRow({
               : "#bbb"
           }}
         >
-          📍
+          📌
         </span>
 
       </div>
 
+
     </div>
   );
 }
+
 
 export default ExpenseRow;
